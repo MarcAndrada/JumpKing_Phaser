@@ -6,8 +6,9 @@ var gamePrefs=
     levelHeight:800, //25*32
     GRAVITY:1000,
     MOVEMENT_SPEED:200,
-    MIN_JUMP_FORCE:-100,
-    MAX_JUMP_FORCE:-600,
+    MIN_JUMP_FORCE:-200,
+    MAX_JUMP_FORCE:-700,
+    JUMP_CHARGE_SPEED: 1.2
 }
 
 var config = 

@@ -21,13 +21,14 @@ class level1 extends Phaser.Scene
 
         //Pinto las CAPAS/LAYERS
         this.floorTest = this.physics.add.image(config.width/2,config.height/2,'testFloor')
-        .setScale(30, 1);
+        .setScale(30000, 1);
         this.floorTest.body.immovable = true;
         this.floorTest.body.allowGravity = false;
 
-        this.hero = new jumpKingPrefab(this, 65,100);
-        this.hero.setFrame(0);
+        this.jumpKing = new jumpKingPrefab(this, 65,100);
+        this.jumpKing.setFrame(0);
         
+        this.cameras.main.startFollow(this.jumpKing)
     }
 
     
