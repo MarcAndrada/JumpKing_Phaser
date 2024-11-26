@@ -55,7 +55,7 @@ class level1 extends Phaser.Scene
         this.platform.body.immovable = true;
         this.platform.body.allowGravity = false;
 
-        this.jumpKing = new jumpKingPrefab(this, config.width / 2, config.height / 2,);
+        this.jumpKing = new jumpKingPrefab(this, config.width / 2, config.height / 2 - 20,);
         this.jumpKing.setFrame(0);
         
         this.cameras.main.scrollX = config.width / 2 - this.cameras.main.width / 2;
