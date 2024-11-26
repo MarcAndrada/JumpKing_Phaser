@@ -26,48 +26,58 @@ class level1 extends Phaser.Scene
     }
 
     create()
-    { //Pinta assets en pantalla
-
+    { 
+        //Pinta assets en pantalla
         //Pinto las CAPAS/LAYERS
-        this.background = this.add.image((config.width / 2), config.height / 1.4, 'lvl1Background');
-        this.floor = this.physics.add.image(config.width / 2, config.height, 'lvl1Floor');
-        this.boxRight = this.physics.add.image((config.width / 2) + (224 / 2) + (128 / 2), config.height - (176 / 2) + (32 / 2), 'lvl1BottomRightBox');
-        this.boxLeft = this.physics.add.image((config.width / 2) - (224 / 2) - (128 / 2), config.height - (176 / 2) + (32 / 2), 'lvl1BottomLeftBox');
-        this.sideRight = this.physics.add.image((config.width / 2) - (224 / 2) - 128 + (8 / 2), config.height -  176 - (184 / 2) + (32 / 2), 'lvl1TopRightSide');
-        this.sideLeft = this.physics.add.image((config.width / 2) + (224 / 2) + 128 - (8 / 2), config.height - 176 - (184 / 2) + (32 / 2), 'lvl1TopLeftSide');
-        this.platform = this.physics.add.image((config.width / 2), (config.height / 2), 'lvl1CentralPlatformBox');
-
-        this.floor.body.immovable = true;
-        this.floor.body.allowGravity = false;
-
-        this.boxRight.body.immovable = true;
-        this.boxRight.body.allowGravity = false;
-
-        this.boxLeft.body.immovable = true;
-        this.boxLeft.body.allowGravity = false;
-
-        this.sideRight.body.immovable = true;
-        this.sideRight.body.allowGravity = false;
-
-        this.sideLeft.body.immovable = true;
-        this.sideLeft.body.allowGravity = false;
-
-        this.platform.body.immovable = true;
-        this.platform.body.allowGravity = false;
+        this.background = this.createMapLayer('lvl1Background', config.width / 2, config.height / 1.4);
+        this.floor = this.createMapLayer('lvl1Floor', config.width / 2, config.height, true, true, false);
+        this.boxRight = this.createMapLayer('lvl1BottomRightBox', 
+            (config.width / 2) + (224 / 2) + (128 / 2), 
+            config.height - (176 / 2) + (32 / 2), 
+            true, true, false
+        );
+        this.boxLeft = this.createMapLayer('lvl1BottomLeftBox', 
+            (config.width / 2) - (224 / 2) - (128 / 2), 
+            config.height - (176 / 2) + (32 / 2), 
+            true, true, false
+        );
+        this.sideRight = this.createMapLayer('lvl1TopRightSide', 
+            (config.width / 2) - (224 / 2) - 128 + (8 / 2), 
+            config.height - 176 - (184 / 2) + (32 / 2), 
+            true, true, false
+        );
+        this.sideLeft = this.createMapLayer('lvl1TopLeftSide', 
+            (config.width / 2) + (224 / 2) + 128 - (8 / 2), 
+            config.height - 176 - (184 / 2) + (32 / 2), 
+            true, true, false
+        );
+        this.platform = this.createMapLayer('lvl1CentralPlatformBox', 
+            config.width / 2, 
+            (config.height / 2), 
+            true, true, false
+        );
 
         this.jumpKing = new jumpKingPrefab(this, config.width / 2, config.height / 2 - 20,);
         this.jumpKing.setFrame(0);
-        
+
         this.cameras.main.scrollX = config.width / 2 - this.cameras.main.width / 2;
         this.cameras.main.scrollY = config.height / 1.435 - this.cameras.main.height / 2;
-
     }
 
-    
     update()
     {        
         
     }
-}
 
-    
+    createMapLayer(imageKey, x, y, physics = false, immovable = false, allowGravity = false) {
+        let layer;
+        if (physics) {
+            layer = this.physics.add.image(x, y, imageKey);
+            layer.body.immovable = immovable;
+            layer.body.allowGravity = allowGravity;
+        } else {
+            layer = this.add.image(x, y, imageKey);
+        }
+        return layer;
+    }
+}    

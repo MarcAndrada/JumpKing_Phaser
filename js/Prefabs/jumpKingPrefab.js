@@ -46,7 +46,6 @@ class jumpKingPrefab extends Phaser.GameObjects.Sprite
         this.body.setVelocityY(jumpYForce);
 
         this.jumpProcess = 0;
-
     }
 
     jumpBehaviour(delta)
@@ -57,14 +56,10 @@ class jumpKingPrefab extends Phaser.GameObjects.Sprite
             this.jump();
         else
             this.body.setVelocityX(0);
-
-        
     }
 
     collisionOnWall()
     {
-
-
         //var velocityY = this.body.velocity.y;
         //if(velocityY < gamePrefs.BOUNCE_Y_MAX_SPEED) //Esta yendo para arriba
           //  velocityY = gamePrefs.BOUNCE_Y_MAX_SPEED;
@@ -77,12 +72,8 @@ class jumpKingPrefab extends Phaser.GameObjects.Sprite
 
     preUpdate(time,delta)
     {
-
-
-
         this.movementDirection = this.cursors.left.isDown? -1 : 0;
         this.movementDirection += this.cursors.right.isDown? 1 : 0;
-
 
         if(this.body.onFloor() && !this.cursors.up.isDown && this.jumpProcess != 0)
             this.jump();
@@ -94,12 +85,8 @@ class jumpKingPrefab extends Phaser.GameObjects.Sprite
         (this.body.touching.right || this.body.touching.left))
             this.collisionOnWall();
 
-
-        
         if(this.body.velocity.x != 0)
             this.currentJumpXSpeed = this.body.velocity.x;
-
-
 
         super.preUpdate(time,delta);
     }
