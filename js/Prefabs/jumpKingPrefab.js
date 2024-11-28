@@ -18,12 +18,24 @@ class jumpKingPrefab extends Phaser.GameObjects.Sprite
 
     setColliders()
     {
-        this.scene.physics.add.collider( this, this.scene.floor);
-        this.scene.physics.add.collider( this, this.scene.boxRight);
-        this.scene.physics.add.collider( this, this.scene.boxLeft);
-        this.scene.physics.add.collider( this, this.scene.sideRight);
-        this.scene.physics.add.collider( this, this.scene.sideLeft);
-        this.scene.physics.add.collider( this, this.scene.platform);
+        // Level 1
+        this.scene.physics.add.collider( this, this.scene.lvl1floor);
+        this.scene.physics.add.collider( this, this.scene.lvl1boxRight);
+        this.scene.physics.add.collider( this, this.scene.lvl1boxLeft);
+        this.scene.physics.add.collider( this, this.scene.lvl1sideRight);
+        this.scene.physics.add.collider( this, this.scene.lvl1sideLeft);
+        this.scene.physics.add.collider( this, this.scene.lvl1platform);
+
+        // Level 2
+        this.scene.physics.add.collider( this, this.scene.lvl2BotPltf);
+        this.scene.physics.add.collider( this, this.scene.lvl2MidPltf1);
+        this.scene.physics.add.collider( this, this.scene.lvl2MidPltf2);
+        this.scene.physics.add.collider( this, this.scene.lvl2TopPltf1);
+        this.scene.physics.add.collider( this, this.scene.lvl2TopPltf2);
+        this.scene.physics.add.collider( this, this.scene.lvl2RightWall);
+        this.scene.physics.add.collider( this, this.scene.lvl2LeftWall2);
+        this.scene.physics.add.collider( this, this.scene.lvl2LeftWall2);
+
     }
 
     movementBehaviour()
