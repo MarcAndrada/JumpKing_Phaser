@@ -78,8 +78,6 @@ class jumpKingPrefab extends Phaser.GameObjects.Sprite
 
         //this.body.setVelocityY(velocityY);
         this.body.setVelocityX(-this.currentJumpXSpeed / 2);
-
-        console.log("Choca");
     }
 
     preUpdate(time,delta)

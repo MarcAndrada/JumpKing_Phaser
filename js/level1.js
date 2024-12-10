@@ -17,6 +17,9 @@ class level1 extends Phaser.Scene
         {
             frameWidth:32,frameHeight:32
         });
+
+        this.load.setPath('assets/fonts/');
+        this.load.bitmapFont('UIFont','JacquardFont_0.png','JacquardFont.fnt');
     }
 
     create()
@@ -32,6 +35,8 @@ class level1 extends Phaser.Scene
 
         this.cameras.main.scrollX = config.width / 2 - this.cameras.main.width / 2;
         this.cameras.main.scrollY = config.height / 1.435 - this.cameras.main.height / 2;
+
+        this.counterUI = new counterPrefab(this, gamePrefs.gameWidth/2 + 50, 12, 15, 'UIFont');
     }
 
     update()
