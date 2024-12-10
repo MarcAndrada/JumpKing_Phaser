@@ -1,6 +1,6 @@
 class counterPrefab extends Phaser.GameObjects.BitmapText
 {
-    constructor(_scene, _x, _y, _size, _font = 'UIFont')    
+    constructor(_scene, _x, _y, _size, _font = 'CounterFont')    
     {//instanciar el objeto
         super(_scene, _x, _y, _font, "00:00:00", _size);
         
@@ -22,9 +22,8 @@ class counterPrefab extends Phaser.GameObjects.BitmapText
 
         var timeSecondsToDisplay = timeSeconds - timeMinutes * 60;
         var timeMinutesToDisplay = timeMinutes - timeHours * 60;
-
-        this.text = "1"
-        //this.text = `${String(timeHours).padStart(2, '0')}:${String(timeMinutesToDisplay).padStart(2, '0')}:${String(timeSecondsToDisplay).padStart(2, '0')}`;
+        
+        this.text = `${String(timeHours).padStart(2, '0')}:${String(timeMinutesToDisplay).padStart(2, '0')}:${String(timeSecondsToDisplay).padStart(2, '0')}`;
     }
     
 }
