@@ -46,7 +46,34 @@ class jumpKingPrefab extends Phaser.GameObjects.Sprite
         this.scene.physics.add.collider( this, this.scene.lvl3H);
         this.scene.physics.add.collider( this, this.scene.lvl3I);
         this.scene.physics.add.collider( this, this.scene.lvl3J);
-
+        // Level 4
+        this.scene.physics.add.collider( this, this.scene.lvl4A);
+        this.scene.physics.add.collider( this, this.scene.lvl4B);
+        this.scene.physics.add.collider( this, this.scene.lvl4C);
+        this.scene.physics.add.collider( this, this.scene.lvl4D);
+        this.scene.physics.add.collider( this, this.scene.lvl4E);
+        this.scene.physics.add.collider( this, this.scene.lvl4F);
+        this.scene.physics.add.collider( this, this.scene.lvl4G);
+        this.scene.physics.add.collider( this, this.scene.lvl4H);
+        this.scene.physics.add.collider( this, this.scene.lvl4I);
+        this.scene.physics.add.collider( this, this.scene.lvl4J);
+        this.scene.physics.add.collider( this, this.scene.lvl4K);
+        this.scene.physics.add.collider( this, this.scene.lvl4L);
+        // Level 5
+        this.scene.physics.add.collider( this, this.scene.lvl5A);
+        this.scene.physics.add.collider( this, this.scene.lvl5B);
+        this.scene.physics.add.collider( this, this.scene.lvl5C);
+        this.scene.physics.add.collider( this, this.scene.lvl5D);
+        this.scene.physics.add.collider( this, this.scene.lvl5E);
+        this.scene.physics.add.collider( this, this.scene.lvl5F);
+        this.scene.physics.add.collider( this, this.scene.lvl5G);
+        this.scene.physics.add.collider( this, this.scene.lvl5H);
+        this.scene.physics.add.collider( this, this.scene.lvl5I);
+        this.scene.physics.add.collider( this, this.scene.lvl5J);
+        this.scene.physics.add.collider( this, this.scene.lvl5K);
+        this.scene.physics.add.collider( this, this.scene.lvl5L);
+        this.scene.physics.add.collider( this, this.scene.lvl5N);
+        this.scene.physics.add.collider( this, this.scene.lvl5M);
     }
 
     movementBehaviour()
