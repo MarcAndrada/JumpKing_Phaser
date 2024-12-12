@@ -32,8 +32,8 @@ class level1 extends Phaser.Scene
 
         //this.createFirstLevel();
         //this.createSecondLevel();
-        this.createThirdLevel();
-        //this.createFourthLevel();
+        //this.createThirdLevel();
+        this.createFourthLevel();
         //this.createfifthLevel();
 
         this.jumpKing = new jumpKingPrefab(this, config.width / 2 + 100, config.height / 2 + 120,);
@@ -219,20 +219,97 @@ class level1 extends Phaser.Scene
     }
     loadAssetsFourthLevel()
     {
-
+        this.load.setPath('assets/sprites/map4');
+        this.load.image('lvl4A','A 8x360.png');
+        this.load.image('lvl4B','B 8x360.png');
+        this.load.image('lvl4C','C 56x16.png');
+        this.load.image('lvl4D','D 40x16.png');
+        this.load.image('lvl4E','E 72x40.png');
+        this.load.image('lvl4F','F 72x16.png');
+        this.load.image('lvl4G','G 40x80.png');
+        this.load.image('lvl4H','H 88x16.png');
+        this.load.image('lvl4I','I 48x72.png');
+        this.load.image('lvl4J','J 16x88.png');
+        this.load.image('lvl4K','K 56x16.png');
+        this.load.image('lvl4L','L 18x16.png');
+        this.load.image('lvl4Background','Mapa 4.png');
     }
     createFourthLevel()
     {
-        this.background = this.createMapLayer('lvl2Background', config.width / 2, config.height / 1.43);
-
+        this.background = this.createMapLayer('lvl4Background', config.width / 2, config.height / 1.43);
+        this.lvl4A = this.createMapLayer('lvl4A', 
+            (config.width / 2) - 236, 
+            (config.height / 1.435), 
+            true, true, false
+        );
+        this.lvl4B = this.createMapLayer('lvl4B', 
+            (config.width / 2) + 236, 
+            (config.height / 1.435), 
+            true, true, false
+        );
+        this.lvl3C = this.createMapLayer('lvl4C', 
+            (config.width / 2) - 204, 
+            (config.height - 240), 
+            true, true, false
+        );
+        this.lvl3D = this.createMapLayer('lvl4D', 
+            (config.width / 2) + 208, 
+            (config.height - 80), 
+            true, true, false
+        );
+        this.lvl3E = this.createMapLayer('lvl4E', 
+            (config.width / 2) - 8, 
+            (config.height) - 32, 
+            true, true, false
+        );
+        this.lvl3F = this.createMapLayer('lvl4F', 
+            (config.width / 2) + 108, 
+            (config.height) - 32, 
+            true, true, false
+        );
+        this.lvl3G = this.createMapLayer('lvl4G', 
+            (config.width / 2) + 24, 
+            (config.height) - 104, 
+            true, true, false
+        );
+        this.lvl3H = this.createMapLayer('lvl4H', 
+            (config.width / 2) + 72, 
+            (config.height) - 128, 
+            true, true, false
+        );
+        this.lvl3I = this.createMapLayer('lvl4I', 
+            (config.width / 2) - 51, 
+            (config.height) - 201, 
+            true, true, false
+        );
+        this.lvl3J = this.createMapLayer('lvl4J', 
+            (config.width / 2) - 67, 
+            (config.height) - 335, 
+            true, true, false
+        );
     }
     loadAssetsFifthLevel()
     {
-
+        this.load.setPath('assets/sprites/map5');
+        this.load.image('lvl5A','A 8x360.png');
+        this.load.image('lvl5B','B 8x360.png');
+        this.load.image('lvl5C','C 32x16.png');
+        this.load.image('lvl5D','D 32x16.png');
+        this.load.image('lvl5E','E 40x16.png');
+        this.load.image('lvl5F','F 16x32.png');
+        this.load.image('lvl5G','G 40x16.png');
+        this.load.image('lvl5H','H 16x32.png');
+        this.load.image('lvl5I','I 40x16.png');
+        this.load.image('lvl5J','J 32x16.png');
+        this.load.image('lvl5K','K 32x16.png');
+        this.load.image('lvl5L','L 32x16.png');
+        this.load.image('lvl5M','M 32x16.png');
+        this.load.image('lvl5N','N 176x16.png');
+        this.load.image('lvl5Background','Mapa 5.png');
     }
     createFifthLevel()
     {
-        this.background = this.createMapLayer('lvl2Background', config.width / 2, config.height / 1.43);
+        this.background = this.createMapLayer('lvl5Background', config.width / 2, config.height / 1.43);
 
     }
     createMapLayer(imageKey, x, y, physics = false, immovable = false, allowGravity = false) {
