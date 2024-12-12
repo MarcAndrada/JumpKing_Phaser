@@ -11,6 +11,9 @@ class level1 extends Phaser.Scene
 
         this.loadAssetFirstLevel();
         this.loadAssetSecondLevel();
+        this.loadAssetsThirdLevel();
+        this.loadAssetsFourthLevel();
+        this.loadAssetsFifthLevel();
 
         this.load.setPath('assets/sprites');
         this.load.spritesheet('jumpKing','hero.png',
@@ -28,7 +31,10 @@ class level1 extends Phaser.Scene
         //Pinto las CAPAS/LAYERS
 
         //this.createFirstLevel();
-        this.createSecondLevel();
+        //this.createSecondLevel();
+        this.createThirdLevel();
+        //this.createFourthLevel();
+        //this.createfifthLevel();
 
         this.jumpKing = new jumpKingPrefab(this, config.width / 2 + 100, config.height / 2 + 120,);
         this.jumpKing.setFrame(0);
@@ -141,6 +147,93 @@ class level1 extends Phaser.Scene
             (config.height - 191 / 2.43), 
             true, true, false
         );
+    }
+    loadAssetsThirdLevel()
+    {
+        this.load.setPath('assets/sprites/map3');
+        this.load.image('lvl3A','A 8x360.png');
+        this.load.image('lvl3B','B 8x360.png');
+        this.load.image('lvl3C','C 56x16.png');
+        this.load.image('lvl3D','D 48x16.png');
+        this.load.image('lvl3E','E 48x16.png');
+        this.load.image('lvl3F','F 57x16.png');
+        this.load.image('lvl3G','G 144x32.png');
+        this.load.image('lvl3H','H 48x16.png');
+        this.load.image('lvl3I','I 58x46.png');
+        this.load.image('lvl3J','J 72x16.png');
+        this.load.image('lvl3Background','Mapa 3.png');
+    }
+    createThirdLevel()
+    {
+        this.background = this.createMapLayer('lvl3Background', config.width / 2, config.height / 1.43);
+        this.lvl3A = this.createMapLayer('lvl3A', 
+            (config.width / 2) - 236, 
+            (config.height / 1.435), 
+            true, true, false
+        );
+        this.lvl3B = this.createMapLayer('lvl3B', 
+            (config.width / 2) + 236, 
+            (config.height / 1.435), 
+            true, true, false
+        );
+        this.lvl3C = this.createMapLayer('lvl3C', 
+            (config.width / 2) - 204, 
+            (config.height - 240), 
+            true, true, false
+        );
+        this.lvl3D = this.createMapLayer('lvl3D', 
+            (config.width / 2) + 208, 
+            (config.height - 80), 
+            true, true, false
+        );
+        this.lvl3E = this.createMapLayer('lvl3E', 
+            (config.width / 2) - 8, 
+            (config.height) - 32, 
+            true, true, false
+        );
+        this.lvl3F = this.createMapLayer('lvl3F', 
+            (config.width / 2) + 108, 
+            (config.height) - 32, 
+            true, true, false
+        );
+        this.lvl3G = this.createMapLayer('lvl3G', 
+            (config.width / 2) + 24, 
+            (config.height) - 104, 
+            true, true, false
+        );
+        this.lvl3H = this.createMapLayer('lvl3H', 
+            (config.width / 2) + 72, 
+            (config.height) - 128, 
+            true, true, false
+        );
+        this.lvl3I = this.createMapLayer('lvl3I', 
+            (config.width / 2) - 51, 
+            (config.height) - 201, 
+            true, true, false
+        );
+        this.lvl3J = this.createMapLayer('lvl3J', 
+            (config.width / 2) - 67, 
+            (config.height) - 335, 
+            true, true, false
+        );
+    }
+    loadAssetsFourthLevel()
+    {
+
+    }
+    createFourthLevel()
+    {
+        this.background = this.createMapLayer('lvl2Background', config.width / 2, config.height / 1.43);
+
+    }
+    loadAssetsFifthLevel()
+    {
+
+    }
+    createFifthLevel()
+    {
+        this.background = this.createMapLayer('lvl2Background', config.width / 2, config.height / 1.43);
+
     }
     createMapLayer(imageKey, x, y, physics = false, immovable = false, allowGravity = false) {
         let layer;
