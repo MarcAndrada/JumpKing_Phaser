@@ -22,7 +22,7 @@ class level1 extends Phaser.Scene
         });
 
         this.load.setPath('assets/fonts');
-        this.load.bitmapFont('CounterFont','Jacquard.png','Jacquard.fnt');
+        this.load.bitmapFont('CounterFont','PixelFont.png','PixelFont.fnt');
     }
 
     create()
@@ -42,7 +42,7 @@ class level1 extends Phaser.Scene
         this.cameras.main.scrollX = config.width / 2 - this.cameras.main.width / 2;
         this.cameras.main.scrollY = config.height / 1.435 - this.cameras.main.height / 2;
 
-        this.counterUI = new counterPrefab(this, gamePrefs.gameWidth/2 , 30, 15, 'CounterFont');
+        this.counterUI = new counterPrefab(this, gamePrefs.gameWidth / 2 + 70, 30, 12, 'CounterFont');
     }
 
     update()
