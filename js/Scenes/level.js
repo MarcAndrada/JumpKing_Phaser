@@ -18,6 +18,14 @@ export default class level1 extends Phaser.Scene
 
     create()
     { 
+        this.currentmap = 1; // Current map
+
+        this.nature_background = this.sound.add('nature_bg', { loop: true});
+        this.redTree_background = this.sound.add('red_tree_bg', { loop: true});
+        this.newLocation = this.sound.add('new_location');
+        this.playBackgroundMusic();
+
+
         //Pinta assets en pantalla
         //Pinto las CAPAS/LAYERS
 
@@ -37,9 +45,7 @@ export default class level1 extends Phaser.Scene
         this.counterUI = new counterPrefab(this, gamePrefs.gameWidth / 2 + 70, 30, 12, 'gameFont');
         
         this.loadAnimations();
-        this.music = this.sound.add('nature_bg');
-        this.music.loop = true;
-        this.music.play();
+
     }
 
 
@@ -72,10 +78,26 @@ export default class level1 extends Phaser.Scene
     
         if (this.jumpKing.y < upperBoundary) {
             this.cameras.main.scrollY -= config.height / 1.5;
+            this.currentmap--;
+            this.playBackgroundMusic();
         }
     
         if (this.jumpKing.y > lowerBoundary) {
             this.cameras.main.scrollY += config.height / 1.5;
+            this.currentmap++;
+            this.playBackgroundMusic();
+        }
+    }
+
+    playBackgroundMusic() {
+        if (this.nature_background.isPlaying) this.nature_background.stop();
+        if (this.redTree_background.isPlaying) this.redTree_background.stop();
+
+        if (this.currentmap < 6) {
+            this.nature_background.play();
+        } else {
+            this.redTree_background.play();
+            this.newLocation.play();
         }
     }
     
