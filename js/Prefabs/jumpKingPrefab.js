@@ -129,11 +129,13 @@ export default class jumpKingPrefab extends Phaser.GameObjects.Sprite
         this.movementDirection = this.cursors.left.isDown? -1 : 0;
         this.movementDirection += this.cursors.right.isDown? 1 : 0;
 
-        if(this.body.onFloor() && !this.cursors.up.isDown && this.jumpProcess != 0)
+        if(this.body.onFloor() && 
+        (!this.cursors.up.isDown && !this.cursors.space.isDown) && 
+        this.jumpProcess != 0)
             this.jump();
         else if(this.body.onFloor() && !this.cursors.up.isDown)
             this.movementBehaviour();
-        else if (this.body.onFloor() && this.cursors.up.isDown)
+        else if (this.body.onFloor() && (this.cursors.up.isDown || this.cursors.space.isDown))
             this.jumpBehaviour(delta);
         else if (!this.body.onFloor() && this.currentJumpXSpeed != 0 &&
         (this.body.touching.right || this.body.touching.left))

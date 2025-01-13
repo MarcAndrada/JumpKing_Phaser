@@ -1,3 +1,5 @@
+import {gamePrefs} from '../globals.js';
+
 export default class menu extends Phaser.Scene
 {
     constructor()
@@ -7,21 +9,21 @@ export default class menu extends Phaser.Scene
 
     init()
     {
-        this.bar = this.add.rectangle(150,200,200,20).setOrigin(0,.5);
+        this.bar = this.add.rectangle(gamePrefs.levelWidth/4,200,200,20).setOrigin(.5,.5);
         this.bar.setStrokeStyle(2,0xFFFFFF);
 
-        this.fill = this.add.rectangle(154,200,0,12,0xFFFFFF).setOrigin(0,.5);
+        this.fill = this.add.rectangle(gamePrefs.levelWidth/4,200,0,12,0xFFFFFF).setOrigin(.5,.5);
 
         this.cursores = this.input.keyboard.createCursorKeys();
         
         this.perText = this.add.bitmapText(
-            164,
+            gamePrefs.levelWidth/4,
             180,
             'gameFont',
             "Loading... 0%",
             12)
             .setCenterAlign()
-            .setOrigin(0,.5);
+            .setOrigin(.5,.5);
 
         this.perText.valor = 0;
     }
@@ -30,18 +32,18 @@ export default class menu extends Phaser.Scene
     {
 
         this.titleText = this.add.bitmapText(
-        gamePrefs.gameWidth/2/2,
+        gamePrefs.levelWidth/4,
         40,
         'gameFont',
-        "ENTI-UB's adventure\nin a far old planet",
-        24)
+        "JUMP KING\n\nThere Is \nA Smoking Hot Babe At The Top!",
+        18)
         .setCenterAlign()
         .setOrigin(.5);
 
         this.cursores = this.input.keyboard.createCursorKeys();
 
         this.buttonText = this.add.bitmapText(
-            gamePrefs.gameWidth/2/2,
+            gamePrefs.levelWidth/4,
             240,
             'gameFont',
             "Press SPACE\nto start!",
@@ -74,10 +76,14 @@ export default class menu extends Phaser.Scene
             this.iniciaJuego()
         }
 
-        if (this.cursores.right.isDown)
+        if(this.perText.valor < 192)
         {
             this.fill.setSize(this.fill.width+1,this.fill.height);
-            this.perText.text = "Loading... "+this.perText.valor++ +" %";
+            this.perText.text = "Loading... "+ Math.floor(this.perText.valor++ / 1.9).toString() +" %";
+        }
+        else
+        {
+            this.finalizaCarga();
         }
     }
 
