@@ -61,6 +61,7 @@ export default class menu extends Phaser.Scene
             yoyo:true,
             repeat:-1
         });
+
     }
 
     startGame()

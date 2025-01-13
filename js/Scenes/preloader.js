@@ -13,7 +13,13 @@ export default class preloader extends Phaser.Scene
         this.loadAssetsFourthLevel();
         this.loadAssetsFifthLevel();
         this.loadAssetsSixthLevel();
+        this.loadAssetsJumpKing()
+        this.loadAssetsAudio();
 
+
+        this.load.image('cursor','cursor.png');
+        this.input.setDefaultCursor('url(assets/sprites/cursor.png), pointer');
+                
         this.load.setPath('/assets/sprites');
         this.load.spritesheet('jumpKing','king.png',
         {
@@ -27,6 +33,9 @@ export default class preloader extends Phaser.Scene
         this.load.on('complete',function()
         {
             this.scene.start('menu');
+            const opening = this.sound.add('opening_theme'); 
+            opening.play();
+
         },this);
     }
 
@@ -124,13 +133,19 @@ export default class preloader extends Phaser.Scene
         this.load.audio('splat','king_splat.wav');
 
         this.load.setPath('assets/sprites');
-        this.load.spritesheet('jumpKing','king.png',
-            {
-                frameWidth:32,frameHeight:32
-            });
         this.load.spritesheet('jumpParticle','jumpParticle.png',
             {
                 frameWidth:32,frameHeight:32
             });
     }
+
+    loadAssetsAudio()
+    {
+        this.load.setPath('assets/audio/background');
+        this.load.audio('nature_bg','nature_bg.wav');
+        this.load.audio('new_location','new_location.wav');
+        this.load.audio('opening_theme','opening_theme.wav');
+        this.load.audio('red_tree_bg','red_tree_bg.wav');
+    }
+
 }

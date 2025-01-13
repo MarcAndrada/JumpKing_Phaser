@@ -37,6 +37,9 @@ export default class level1 extends Phaser.Scene
         this.counterUI = new counterPrefab(this, gamePrefs.gameWidth / 2 + 70, 30, 12, 'gameFont');
         
         this.loadAnimations();
+        this.music = this.sound.add('nature_bg');
+        this.music.loop = true;
+        this.music.play();
     }
 
 
