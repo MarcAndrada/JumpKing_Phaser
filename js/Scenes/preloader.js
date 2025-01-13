@@ -133,6 +133,7 @@ export default class preloader extends Phaser.Scene
         this.load.audio('splat','king_splat.wav');
 
         this.load.setPath('assets/sprites');
+        
         this.load.spritesheet('jumpParticle','jumpParticle.png',
             {
                 frameWidth:32,frameHeight:32

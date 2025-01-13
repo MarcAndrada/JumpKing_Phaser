@@ -21,6 +21,14 @@ export default class jumpKingPrefab extends Phaser.GameObjects.Sprite
         this.onAir = true;
         //Cambiar tamaño colision
         this.body.setSize(this.body.width - 15, this.body.height - 15);
+
+        this.sounds = {
+            jump: this.scene.sound.add('jump'),
+            land: this.scene.sound.add('land'),
+            splat: this.scene.sound.add('splat'),
+            bump: this.scene.sound.add('bump'),
+        };
+
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, function (animation, frame) {
             if(animation.key == 'king_jump_fall')
                 this.anims.setFrame(0);
@@ -136,6 +144,8 @@ export default class jumpKingPrefab extends Phaser.GameObjects.Sprite
         this.jumpStartYPos = this.y;
         this.onAir = true;
 
+        this.sounds.jump.play();
+
         this.checkLookDirection();
     }
     fall(){
@@ -151,6 +161,10 @@ export default class jumpKingPrefab extends Phaser.GameObjects.Sprite
             //Splat
             this.anims.pause();
             this.setFrame(this.splatFrame);
+            this.sounds.splat.play();
+        }
+        else {
+            this.sounds.land.play();
         }
 
         this.onAir = false;
@@ -179,6 +193,7 @@ export default class jumpKingPrefab extends Phaser.GameObjects.Sprite
         this.body.setVelocityX(-this.currentJumpXSpeed / 1.2);
         this.anims.pause();
         this.setFrame(this.bounceFrame);
+        this.sounds.bump.play();
         this.bouncing = true;
     }
 
