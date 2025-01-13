@@ -1,4 +1,8 @@
-class level1 extends Phaser.Scene
+import {gamePrefs} from '../globals.js';
+
+import jumpKingPrefab from '/js/Prefabs/jumpKingPrefab.js'
+
+export default class level1 extends Phaser.Scene
 {
     constructor()
     {
@@ -45,11 +49,6 @@ class level1 extends Phaser.Scene
         this.cameras.main.scrollY = config.height / 1.435 - this.cameras.main.height / 2;
 
         this.counterUI = new counterPrefab(this, gamePrefs.gameWidth / 2 + 70, 30, 12, 'CounterFont');
-    }
-
-    update()
-    {        
-        
     }
 
     loadAssetFirstLevel()
