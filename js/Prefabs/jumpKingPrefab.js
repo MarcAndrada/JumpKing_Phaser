@@ -34,7 +34,6 @@ export default class jumpKingPrefab extends Phaser.GameObjects.Sprite
         this.jumpFallFrame = 6;
         this.strongFallFrame = 7;
         this.bounceFrame = 8;
-        this.lookUpFrame = 9;
     }
 
     setColliders()
@@ -131,6 +130,8 @@ export default class jumpKingPrefab extends Phaser.GameObjects.Sprite
         this.jumpProcess = 0;
         this.anims.pause();
         this.setFrame(this.jumpStartFrame);
+
+        this.checkLookDirection();
     }
 
     jumpBehaviour(delta)
@@ -154,7 +155,7 @@ export default class jumpKingPrefab extends Phaser.GameObjects.Sprite
           //  velocityY = gamePrefs.BOUNCE_Y_MAX_SPEED;
 
         //this.body.setVelocityY(velocityY);
-        this.body.setVelocityX(-this.currentJumpXSpeed / 1.1);
+        this.body.setVelocityX(-this.currentJumpXSpeed / 1.2);
         this.anims.pause();
         this.setFrame(this.bounceFrame);
         this.bouncing = true;
