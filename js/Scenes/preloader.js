@@ -15,9 +15,9 @@ export default class preloader extends Phaser.Scene
         this.loadAssetsSixthLevel();
 
         this.load.setPath('/assets/sprites');
-        this.load.spritesheet('jumpKing','hero.png',
+        this.load.spritesheet('jumpKing','king.png',
         {
-            frameWidth:32,frameHeight:32
+            frameWidth:32,frameHeight:38
         });
 
         this.load.setPath('/assets/fonts');

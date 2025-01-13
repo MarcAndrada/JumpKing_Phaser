@@ -28,7 +28,7 @@ export default class menu extends Phaser.Scene
         this.perText.valor = 0;
     }
 
-    finalizaCarga()
+    endLoad()
     {
 
         this.titleText = this.add.bitmapText(
@@ -63,9 +63,9 @@ export default class menu extends Phaser.Scene
         });
     }
 
-    iniciaJuego()
+    startGame()
     {
-        this.scene.start('level1');    
+        this.scene.start('level');    
     }
 
     update()
@@ -73,17 +73,19 @@ export default class menu extends Phaser.Scene
         //actualizar assets
         if(this.cursores.space.isDown)
         {
-            this.iniciaJuego()
+            this.startGame()
         }
 
         if(this.perText.valor < 192)
         {
-            this.fill.setSize(this.fill.width+1,this.fill.height);
-            this.perText.text = "Loading... "+ Math.floor(this.perText.valor++ / 1.9).toString() +" %";
+            let augment = 2
+            this.fill.setSize(this.fill.width+augment,this.fill.height);
+            this.perText.valor += augment;
+            this.perText.text = "Loading... "+ Math.floor(this.perText.valor / 1.92).toString() +" %";
         }
         else
         {
-            this.finalizaCarga();
+            this.endLoad();
         }
     }
 

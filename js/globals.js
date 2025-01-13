@@ -43,5 +43,9 @@ export var config =
         width:gamePrefs.gameWidth/1.5,
         height:gamePrefs.gameHeight/1.5,
         autoCenter:Phaser.Scale.CENTER_BOTH
+    },
+    fps: {
+      target: 60, // Limitar a 60 FPS
+      forceSetTimeOut: true
     }
 }

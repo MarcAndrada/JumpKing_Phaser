@@ -8,7 +8,7 @@ export default class level1 extends Phaser.Scene
 {
     constructor()
     {
-        super({key:'level1'});
+        super({key:'level'});
     }
 
     preload()
@@ -35,8 +35,32 @@ export default class level1 extends Phaser.Scene
         this.cameras.main.scrollY = config.height / 1.435 - this.cameras.main.height / 2;
 
         this.counterUI = new counterPrefab(this, gamePrefs.gameWidth / 2 + 70, 30, 12, 'gameFont');
+        
+        this.loadAnimations();
     }
 
+
+    loadAnimations()
+    {
+       
+        this.anims.create(
+        {
+            key: 'king_run',
+            frames:this.anims.generateFrameNumbers('jumpKing', 
+                {start:1, end: 3}),
+            frameRate: 7,
+            repeat: -1,
+            yoyo: true
+        });
+
+        this.anims.create(
+        {
+            key: 'king_jump_fall',
+            frames:this.anims.generateFrameNumbers('jumpKing', 
+                {start:9, end: 11}),
+            frameRate: 10
+        });
+    }
     update()
     {
         const screenHeight = this.cameras.main.height;

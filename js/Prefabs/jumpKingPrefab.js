@@ -9,12 +9,32 @@ export default class jumpKingPrefab extends Phaser.GameObjects.Sprite
         _scene.add.existing(this);
         _scene.physics.world.enable(this);
 
+        this.loadAnimFrames();
         this.setColliders();
         this.scene = _scene;
         this.cursors = this.scene.input.keyboard.createCursorKeys();
         this.movementDirection = 0;
         this.jumpProcess = 0;
         this.currentJumpXSpeed = 0;
+        this.bouncing = false;
+
+        //Cambiar tamaño colision
+        this.body.setSize(this.body.width - 15, this.body.height - 15);
+        this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, function (animation, frame) {
+            if(animation.key == 'king_jump_fall')
+                this.anims.setFrame(0);
+          });
+    }
+
+    loadAnimFrames()
+    {
+        this.idleFrame = 0;
+        this.jumpChargeFrame = 4;
+        this.jumpStartFrame = 5;
+        this.jumpFallFrame = 6;
+        this.strongFallFrame = 7;
+        this.bounceFrame = 8;
+        this.lookUpFrame = 9;
     }
 
     setColliders()
@@ -85,8 +105,15 @@ export default class jumpKingPrefab extends Phaser.GameObjects.Sprite
     movementBehaviour()
     {
         this.body.setVelocityX(gamePrefs.MOVEMENT_SPEED * this.movementDirection);
+        this.checkLookDirection();
     }
-
+    checkLookDirection()
+    {
+        if(this.body.velocity.x < 0)
+            this.flipX = true;
+        else if (this.body.velocity.x > 0)
+            this.flipX = false
+    }
     jump()
     {
         var jumpYForce = gamePrefs.MAX_Y_JUMP_FORCE * this.jumpProcess;
@@ -102,16 +129,22 @@ export default class jumpKingPrefab extends Phaser.GameObjects.Sprite
         this.body.setVelocityY(jumpYForce);
 
         this.jumpProcess = 0;
+        this.anims.pause();
+        this.setFrame(this.jumpStartFrame);
     }
 
     jumpBehaviour(delta)
     {
         this.jumpProcess += (delta / 1000) * gamePrefs.JUMP_CHARGE_SPEED; //Dividimos por 1000 porque el delta esta en ms
-
+        
+        this.anims.pause();
+        this.setFrame(this.jumpChargeFrame);
         if(this.jumpProcess >= 1)
             this.jump();
         else
             this.body.setVelocityX(0);
+
+        
     }
 
     collisionOnWall()
@@ -121,13 +154,52 @@ export default class jumpKingPrefab extends Phaser.GameObjects.Sprite
           //  velocityY = gamePrefs.BOUNCE_Y_MAX_SPEED;
 
         //this.body.setVelocityY(velocityY);
-        this.body.setVelocityX(-this.currentJumpXSpeed / 2);
+        this.body.setVelocityX(-this.currentJumpXSpeed / 1.1);
+        this.anims.pause();
+        this.setFrame(this.bounceFrame);
+        this.bouncing = true;
     }
 
-    preUpdate(time,delta)
+    checkFloorAnims(){
+        if(this.body.velocity.x == 0)
+        {
+            console.log("Quieto");
+            this.anims.pause();
+            this.setFrame(this.idleFrame);
+        }
+        else if (this.body.velocity.x != 0)
+        {   
+            console.log("Moviendose");
+            this.anims.play("king_run", true);
+        }
+        this.bouncing = true;
+    }
+    checkAirAnims()
+    {
+        if(!this.bouncing && this.body.velocity.y < 0)
+        {
+            this.anims.pause();
+            this.setFrame(this.jumpStartFrame);
+        }
+        else if(!this.bouncing && this.body.velocity.y > 0)
+        {
+            this.anims.pause();
+            this.setFrame(this.jumpFallFrame);
+        }
+
+    }
+
+
+    preUpdate(time, delta)
     {
         this.movementDirection = this.cursors.left.isDown? -1 : 0;
         this.movementDirection += this.cursors.right.isDown? 1 : 0;
+
+
+        if(this.body.onFloor())
+            this.checkFloorAnims();
+        else
+            this.checkAirAnims();
 
         if(this.body.onFloor() && 
         (!this.cursors.up.isDown && !this.cursors.space.isDown) && 
@@ -143,6 +215,7 @@ export default class jumpKingPrefab extends Phaser.GameObjects.Sprite
 
         if(this.body.velocity.x != 0)
             this.currentJumpXSpeed = this.body.velocity.x;
+
 
         super.preUpdate(time,delta);
     }
