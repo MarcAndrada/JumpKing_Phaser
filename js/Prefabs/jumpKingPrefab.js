@@ -17,7 +17,8 @@ export default class jumpKingPrefab extends Phaser.GameObjects.Sprite
         this.jumpProcess = 0;
         this.currentJumpXSpeed = 0;
         this.bouncing = false;
-
+        this.jumpStartYPos = 0;
+        this.onAir = true;
         //Cambiar tamaño colision
         this.body.setSize(this.body.width - 15, this.body.height - 15);
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, function (animation, frame) {
@@ -32,7 +33,7 @@ export default class jumpKingPrefab extends Phaser.GameObjects.Sprite
         this.jumpChargeFrame = 4;
         this.jumpStartFrame = 5;
         this.jumpFallFrame = 6;
-        this.strongFallFrame = 7;
+        this.splatFrame = 7;
         this.bounceFrame = 8;
     }
 
@@ -54,7 +55,7 @@ export default class jumpKingPrefab extends Phaser.GameObjects.Sprite
         this.scene.physics.add.collider( this, this.scene.lvl2TopPltf2);
         this.scene.physics.add.collider( this, this.scene.lvl2RightWall);
         this.scene.physics.add.collider( this, this.scene.lvl2LeftWall2);
-        this.scene.physics.add.collider( this, this.scene.lvl2RightWall2);
+        this.scene.physics.add.collider( this, this.scene.lvl2LeftWall1);
         // Level 3
         this.scene.physics.add.collider( this, this.scene.lvl3A);
         this.scene.physics.add.collider( this, this.scene.lvl3B);
@@ -112,6 +113,7 @@ export default class jumpKingPrefab extends Phaser.GameObjects.Sprite
             this.flipX = true;
         else if (this.body.velocity.x > 0)
             this.flipX = false
+        
     }
     jump()
     {
@@ -131,9 +133,28 @@ export default class jumpKingPrefab extends Phaser.GameObjects.Sprite
         this.anims.pause();
         this.setFrame(this.jumpStartFrame);
 
+        this.jumpStartYPos = this.y;
+        this.onAir = true;
+
         this.checkLookDirection();
     }
+    fall(){
 
+        this.checkLookDirection();
+        
+        this.body.setVelocityX(0);
+        this.body.setVelocityY(0);
+
+        console.log("Cae al suelo en la posicion " + this.y + " y la ha saltado en el " + this.jumpStartYPos)
+        if(this.y - this.jumpStartYPos >= gamePrefs.SPLAT_DISTANCE)
+        {
+            //Splat
+            this.anims.pause();
+            this.setFrame(this.splatFrame);
+        }
+
+        this.onAir = false;
+    }
     jumpBehaviour(delta)
     {
         this.jumpProcess += (delta / 1000) * gamePrefs.JUMP_CHARGE_SPEED; //Dividimos por 1000 porque el delta esta en ms
@@ -147,7 +168,7 @@ export default class jumpKingPrefab extends Phaser.GameObjects.Sprite
 
         
     }
-
+    
     collisionOnWall()
     {
         //var velocityY = this.body.velocity.y;
@@ -162,17 +183,15 @@ export default class jumpKingPrefab extends Phaser.GameObjects.Sprite
     }
 
     checkFloorAnims(){
-        if(this.body.velocity.x == 0)
+        console.log(this.frame.name + " | " + this.splatFrame)
+        if(this.body.velocity.x == 0 && this.frame.name != this.splatFrame)
         {
-            console.log("Quieto");
             this.anims.pause();
             this.setFrame(this.idleFrame);
         }
-        else if (this.body.velocity.x != 0)
-        {   
-            console.log("Moviendose");
+        else if (this.body.velocity.x != 0 && this.movementDirection.x != 0)
             this.anims.play("king_run", true);
-        }
+
         this.bouncing = true;
     }
     checkAirAnims()
@@ -202,7 +221,11 @@ export default class jumpKingPrefab extends Phaser.GameObjects.Sprite
         else
             this.checkAirAnims();
 
-        if(this.body.onFloor() && 
+        if(this.onAir && this.body.onFloor())
+            this.fall();
+        else if(!this.onAir && !this.body.onFloor())
+            this.onAir = true;
+        else if(this.body.onFloor() && 
         (!this.cursors.up.isDown && !this.cursors.space.isDown) && 
         this.jumpProcess != 0)
             this.jump();
@@ -216,7 +239,6 @@ export default class jumpKingPrefab extends Phaser.GameObjects.Sprite
 
         if(this.body.velocity.x != 0)
             this.currentJumpXSpeed = this.body.velocity.x;
-
 
         super.preUpdate(time,delta);
     }

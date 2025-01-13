@@ -15,7 +15,8 @@ export var gamePrefs=
     MIN_X_JUMP_FORCE: 150,
     MAX_X_JUMP_FORCE: 225,
     BOUNCE_Y_MAX_SPEED: -100,
-    JUMP_CHARGE_SPEED: 1.2
+    JUMP_CHARGE_SPEED: 1.2,
+    SPLAT_DISTANCE: 150
 }
 
 export var config = 
