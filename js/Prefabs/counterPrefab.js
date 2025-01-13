@@ -1,6 +1,6 @@
-class counterPrefab extends Phaser.GameObjects.BitmapText
+export default class counterPrefab extends Phaser.GameObjects.BitmapText
 {
-    constructor(_scene, _x, _y, _size, _font = 'CounterFont')    
+    constructor(_scene, _x, _y, _size, _font = 'gameFont')    
     {//instanciar el objeto
         super(_scene, _x, _y, _font, "00:00:00", _size);
         

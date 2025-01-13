@@ -1,4 +1,6 @@
-class jumpKingPrefab extends Phaser.GameObjects.Sprite
+import {gamePrefs} from '../globals.js';
+
+export default class jumpKingPrefab extends Phaser.GameObjects.Sprite
 {
     constructor(_scene,_posX,_posY,_spriteTag='jumpKing')    
     {//instanciar el objeto
@@ -8,7 +10,6 @@ class jumpKingPrefab extends Phaser.GameObjects.Sprite
         _scene.physics.world.enable(this);
 
         this.setColliders();
-        this.health = gamePrefs.HERO_MAX_LIVES
         this.scene = _scene;
         this.cursors = this.scene.input.keyboard.createCursorKeys();
         this.movementDirection = 0;
