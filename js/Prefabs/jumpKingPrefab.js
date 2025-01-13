@@ -35,7 +35,7 @@ export default class jumpKingPrefab extends Phaser.GameObjects.Sprite
         this.scene.physics.add.collider( this, this.scene.lvl2TopPltf2);
         this.scene.physics.add.collider( this, this.scene.lvl2RightWall);
         this.scene.physics.add.collider( this, this.scene.lvl2LeftWall2);
-        this.scene.physics.add.collider( this, this.scene.lvl2LeftWall2);
+        this.scene.physics.add.collider( this, this.scene.lvl2RightWall2);
         // Level 3
         this.scene.physics.add.collider( this, this.scene.lvl3A);
         this.scene.physics.add.collider( this, this.scene.lvl3B);
