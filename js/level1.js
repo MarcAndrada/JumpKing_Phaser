@@ -14,6 +14,7 @@ class level1 extends Phaser.Scene
         this.loadAssetsThirdLevel();
         this.loadAssetsFourthLevel();
         this.loadAssetsFifthLevel();
+        this.loadAssetsSixthLevel();
 
         this.load.setPath('assets/sprites');
         this.load.spritesheet('jumpKing','hero.png',
@@ -34,7 +35,8 @@ class level1 extends Phaser.Scene
         //this.createSecondLevel();
         //this.createThirdLevel();
         //this.createFourthLevel();
-        this.createFifthLevel();
+        //this.createFifthLevel();
+        this.createSixthLevel();
 
         this.jumpKing = new jumpKingPrefab(this, config.width / 2 + 100, config.height / 2 + 120,);
         this.jumpKing.setFrame(0);
@@ -391,6 +393,35 @@ class level1 extends Phaser.Scene
             true, true, false
         );
     }
+    loadAssetsSixthLevel()
+    {
+        this.load.setPath('assets/sprites/map6');
+        this.load.image('lvl6A','A 176x32.png');
+        this.load.image('lvl6B','B 8x104.png');
+        this.load.image('lvl6C','C 8x104.png');
+
+        this.load.image('lvl6Background','Mapa 6.png');
+    }
+    createSixthLevel()
+    {
+        this.background = this.createMapLayer('lvl6Background', config.width / 2, config.height / 1.43);
+        this.lvl6A = this.createMapLayer('lvl6A', 
+            (config.width / 2), 
+            (config.height), 
+            true, true, false
+        );
+        this.lvl6B = this.createMapLayer('lvl6B', 
+            (config.width / 2) + 236, 
+            (config.height - 35), 
+            true, true, false
+        );
+        this.lvl6C = this.createMapLayer('lvl6C', 
+            (config.width / 2) - 236, 
+            (config.height - 35), 
+            true, true, false
+        );
+    }
+    
     createMapLayer(imageKey, x, y, physics = false, immovable = false, allowGravity = false) {
         let layer;
         if (physics) {

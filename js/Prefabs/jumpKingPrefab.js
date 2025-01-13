@@ -74,6 +74,11 @@ class jumpKingPrefab extends Phaser.GameObjects.Sprite
         this.scene.physics.add.collider( this, this.scene.lvl5L);
         this.scene.physics.add.collider( this, this.scene.lvl5N);
         this.scene.physics.add.collider( this, this.scene.lvl5M);
+
+        // Level 6
+        this.scene.physics.add.collider( this, this.scene.lvl6A);
+        this.scene.physics.add.collider( this, this.scene.lvl6B);
+        this.scene.physics.add.collider( this, this.scene.lvl6C);
     }
 
     movementBehaviour()
