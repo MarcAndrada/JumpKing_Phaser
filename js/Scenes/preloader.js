@@ -114,4 +114,23 @@ export default class preloader extends Phaser.Scene
 
         this.load.image('lvl6Background','Mapa 6.png');
     }
+
+    loadAssetsJumpKing()
+    {
+        this.load.setPath('assets/audio/king');
+        this.load.audio('bump','king_bump.wav');
+        this.load.audio('jump','king_jump.wav');
+        this.load.audio('land','king_land.wav');
+        this.load.audio('splat','king_splat.wav');
+
+        this.load.setPath('assets/sprites');
+        this.load.spritesheet('jumpKing','king.png',
+            {
+                frameWidth:32,frameHeight:32
+            });
+        this.load.spritesheet('jumpParticle','jumpParticle.png',
+            {
+                frameWidth:32,frameHeight:32
+            });
+    }
 }
