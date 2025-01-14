@@ -236,6 +236,7 @@ export default class level1 extends Phaser.Scene
     }
     createFourthLevel()
     {
+        this.backgroundColor = this.createMapLayer('BackgroundColor', config.width / 2, config.height / 1.43, 360 * 3);
         this.background = this.createMapLayer('lvl4Background', config.width / 2, config.height / 1.43, 360 * 3);
         this.lvl4A = this.createMapLayer('lvl4A', 
             (config.width / 2) - 236, 
@@ -300,6 +301,7 @@ export default class level1 extends Phaser.Scene
     }
     createFifthLevel()
     {
+        this.backgroundColor = this.createMapLayer('BackgroundColor', config.width / 2, config.height / 1.43, 360 * 4);
         this.background = this.createMapLayer('lvl5Background', config.width / 2, config.height / 1.43, 360 * 4);
         this.lvl5A = this.createMapLayer('lvl5A', 
             (config.width / 2) - 236, 
@@ -374,6 +376,7 @@ export default class level1 extends Phaser.Scene
     }
     createSixthLevel()
     {
+        this.backgroundColor = this.createMapLayer('BackgroundNoon', config.width / 2, config.height / 1.43, 360 * 5);
         this.background = this.createMapLayer('lvl6Background', config.width / 2, config.height / 1.43, 360 * 5);
         this.lvl6A = this.createMapLayer('lvl6A', 
             (config.width / 2), 

@@ -92,6 +92,7 @@ export default class preloader extends Phaser.Scene
         this.load.image('lvl4K','K 56x16.png');
         this.load.image('lvl4L','L 18x16.png');
         this.load.image('lvl4Background','Mapa 4.png');
+        this.load.image('BackgroundColor', 'bg.png');
     }
     loadAssetsFifthLevel()
     {
@@ -120,6 +121,8 @@ export default class preloader extends Phaser.Scene
         this.load.image('lvl6C','C 8x104.png');
 
         this.load.image('lvl6Background','Mapa 6.png');
+        this.load.image('BackgroundNoon','bg1.png');
+
     }
 
     loadAssetsJumpKing()
