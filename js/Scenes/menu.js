@@ -7,18 +7,21 @@ export default class menu extends Phaser.Scene
         super({key:'menu'});
     }
 
+    
     init()
     {
-        this.bar = this.add.rectangle(gamePrefs.levelWidth/4,200,200,20).setOrigin(.5,.5);
+        this.bar = this.add.rectangle(gamePrefs.levelWidth/3,60,200,20).setOrigin(.5,.5);
         this.bar.setStrokeStyle(2,0xFFFFFF);
 
-        this.fill = this.add.rectangle(gamePrefs.levelWidth/4,200,0,12,0xFFFFFF).setOrigin(.5,.5);
+        this.fill = this.add.rectangle(gamePrefs.levelWidth/3,60,0,12,0xFFFFFF).setOrigin(.5,.5);
 
-        this.cursors = this.input.keyboard.createCursorKeys();
+        this.add.image(650, 360, 'title_bg').setOrigin(1).setScale(1.1).setDepth(-1)
+        
+        this.cursores = this.input.keyboard.createCursorKeys();
         
         this.perText = this.add.bitmapText(
-            gamePrefs.levelWidth/4,
-            180,
+            gamePrefs.levelWidth/3,
+            40,
             'gameFont',
             "Loading... 0%",
             12)
@@ -27,24 +30,24 @@ export default class menu extends Phaser.Scene
 
         this.perText.valor = 0;
     }
-
+    
     endLoad()
     {
 
-        this.titleText = this.add.bitmapText(
-        gamePrefs.levelWidth/4,
-        40,
-        'gameFont',
-        "JUMP KING\n\nThere Is \nA Smoking Hot Babe At The Top!",
-        18)
-        .setCenterAlign()
-        .setOrigin(.5);
+        //this.titleText = this.add.bitmapText(
+        //gamePrefs.levelWidth/4,
+        //40,
+        //'gameFont',
+        //"JUMP KING\n\nThere Is \nA Smoking Hot Babe At The Top!",
+        //18)
+        //.setCenterAlign()
+        //.setOrigin(.5);
 
         this.cursors = this.input.keyboard.createCursorKeys();
 
         this.buttonText = this.add.bitmapText(
-            gamePrefs.levelWidth/4,
-            240,
+            gamePrefs.levelWidth/3,
+            100,
             'gameFont',
             "Press SPACE\nto start!",
             12)

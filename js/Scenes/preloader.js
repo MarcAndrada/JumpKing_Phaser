@@ -16,8 +16,6 @@ export default class preloader extends Phaser.Scene
         this.loadAssetsJumpKing()
         this.loadAssetsAudio();
 
-
-        this.load.image('cursor','cursor.png');
         this.input.setDefaultCursor('url(assets/sprites/cursor.png), pointer');
                 
         this.load.setPath('/assets/sprites');
@@ -25,7 +23,7 @@ export default class preloader extends Phaser.Scene
         {
             frameWidth:32,frameHeight:38
         });
-
+        this.load.image('title_bg', 'JumpKing-title.jpg')
         this.load.setPath('/assets/fonts');
         this.load.bitmapFont('gameFont','PixelFont.png','PixelFont.fnt');
 
@@ -131,13 +129,6 @@ export default class preloader extends Phaser.Scene
         this.load.audio('jump','king_jump.wav');
         this.load.audio('land','king_land.wav');
         this.load.audio('splat','king_splat.wav');
-
-        this.load.setPath('assets/sprites');
-        
-        this.load.spritesheet('jumpParticle','jumpParticle.png',
-            {
-                frameWidth:32,frameHeight:32
-            });
     }
 
     loadAssetsAudio()
