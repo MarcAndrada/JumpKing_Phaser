@@ -140,7 +140,7 @@ export default class level1 extends Phaser.Scene
     {
         this.background = this.createMapLayer('lvl2Background', config.width / 2, config.height / 1.43, 360);
         this.lvl2BotPltf = this.createMapLayer('lvl2BottomPlatform', 
-            (config.width / 2) + 105, 
+            (config.width / 2) + 103, 
             (config.height - 32), 360,
             true, true, false
         );
