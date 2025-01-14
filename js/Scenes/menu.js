@@ -17,7 +17,7 @@ export default class menu extends Phaser.Scene
 
         this.add.image(650, 360, 'title_bg').setOrigin(1).setScale(1.1).setDepth(-1)
         
-        this.cursores = this.input.keyboard.createCursorKeys();
+        this.cursors = this.input.keyboard.createCursorKeys();
         
         this.perText = this.add.bitmapText(
             gamePrefs.levelWidth/3,
