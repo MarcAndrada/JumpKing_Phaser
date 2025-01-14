@@ -10,10 +10,10 @@ export var gamePrefs=
     levelHeight:800, //25*32
     GRAVITY:1000,
     MOVEMENT_SPEED:100,
-    MIN_Y_JUMP_FORCE:-150,
-    MAX_Y_JUMP_FORCE:-575,
-    MIN_X_JUMP_FORCE: 150,
-    MAX_X_JUMP_FORCE: 225,
+    MIN_Y_JUMP_FORCE:-125,
+    MAX_Y_JUMP_FORCE:-565,
+    MIN_X_JUMP_FORCE: 175,
+    MAX_X_JUMP_FORCE: 200,
     BOUNCE_Y_MAX_SPEED: -100,
     JUMP_CHARGE_SPEED: 1.2,
     SPLAT_DISTANCE: 150
@@ -35,7 +35,7 @@ export var config =
         arcade:
         {
             gravity:{y:gamePrefs.GRAVITY},
-            debug:true
+            debug:false
         }
     },
     scale:

@@ -14,7 +14,7 @@ export default class menu extends Phaser.Scene
 
         this.fill = this.add.rectangle(gamePrefs.levelWidth/4,200,0,12,0xFFFFFF).setOrigin(.5,.5);
 
-        this.cursores = this.input.keyboard.createCursorKeys();
+        this.cursors = this.input.keyboard.createCursorKeys();
         
         this.perText = this.add.bitmapText(
             gamePrefs.levelWidth/4,
@@ -40,7 +40,7 @@ export default class menu extends Phaser.Scene
         .setCenterAlign()
         .setOrigin(.5);
 
-        this.cursores = this.input.keyboard.createCursorKeys();
+        this.cursors = this.input.keyboard.createCursorKeys();
 
         this.buttonText = this.add.bitmapText(
             gamePrefs.levelWidth/4,
@@ -72,7 +72,7 @@ export default class menu extends Phaser.Scene
     update()
     {
         //actualizar assets
-        if(this.cursores.space.isDown)
+        if(this.cursors.space.isDown)
         {
             this.startGame()
         }
